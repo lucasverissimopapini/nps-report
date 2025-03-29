@@ -40,6 +40,13 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('doc-swagger', app, document);
 
+  app.use('/', (req, res, next) => {
+    if (req.path === '/') {
+      return res.redirect('/doc-swagger');
+    }
+    next();
+  });
+
   await app.listen(3001);
 }
 bootstrap();
