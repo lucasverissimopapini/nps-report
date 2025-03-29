@@ -1,0 +1,18 @@
+#version: '3'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: nps_db
+    restart: always
+    environment:
+      POSTGRES_DB: nps
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: npsplatform
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
